@@ -35,32 +35,21 @@ Motivated by an interesting phenomenon that _the performance of object detection
 
 ## Installation
 
-We tested our code with `Python=3.7.16, PyTorch=1.9.0, CUDA=11.1`. Please install PyTorch first according to [official instructions](https://pytorch.org/get-started/previous-versions/). Our code is based on [detectron2](https://github.com/facebookresearch/detectron2). Please refer to the [installation](https://detectron2.readthedocs.io/en/latest/tutorials/install.html) of detectron2.
+Please install PyTorch and [detectron2](https://github.com/facebookresearch/detectron2) first — see detectron2's [installation instructions](https://detectron2.readthedocs.io/en/latest/tutorials/install.html). A CUDA toolkit matching your GPU (`CUDA_HOME` set, or `FORCE_CUDA=1`) must be available at install time, since installing this package compiles the `MultiScaleDeformableAttention` CUDA extension.
 
-Example conda environment setup：
+Once PyTorch and detectron2 are installed:
 
 ```bash
-# Create a new virtual environment
-conda create -n dimaskdino python=3.7
-conda activate dimaskdino
+pip install git+https://github.com/Enodo-Robotics/DI-MaskDINO.git
+```
 
-# Install PyTorch
-conda install pytorch==1.9.0 torchvision==0.10.0 cudatoolkit=11.1 -c pytorch -c nvidia
+This builds and installs the `dimaskdino` package together with its CUDA extension in one step. To install from a local checkout instead (e.g. for development):
 
-# Install opencv
-pip install opencv-python
-
-# Install detectron2
-python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
-
-# Under your working directory
-git clone https://github.com/CQU-ADHRI-Lab/DI-MaskDINO.git
+```bash
+git clone https://github.com/Enodo-Robotics/DI-MaskDINO.git
 cd DI-MaskDINO
-pip install -r requirements.txt
-
-# CUDA kernel for MSDeformAttn
-cd dimaskdino/modeling/pixel_decoder/ops
-sh make.sh
+pip install .
+# or `pip install -e .` for an editable install
 ```
 
 ## Models
